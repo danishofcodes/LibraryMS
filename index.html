@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LibraryMS</title>
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <div class="login" id="login">
+      <form>
+        <label for="lib-username">Usernam</label>
+        <input type="text" class="input-fields" id="lib-username" />
+        <br />
+        <label for="lib-password">Password</label>
+        <input type="password" class="input-fields" id="lib-password" />
+        <button type="button" id="loginbtn">login</button>
+      </form>
+    </div>
+
+    <section id="libraryMS" style="display: none">
+      <button type="button" id="logout">logout</button>
+      <h3>Library Management System</h3>
+      <p>Hey, welcome</p>
+
+      <ul>
+        <li id="create-new-cusstomer">create new customer</li>
+        <li id="book-register">Book Register</li>
+        <li id="lcr">Library Customer Register</li>
+      </ul>
+
+      <div>
+        <h3>Create New Customer</h3>
+        <form action="" id="createNewCustomerForm">
+          <label for="lib-username">Name</label>
+          <input type="text" class="input-fields" id="cust-name" name="cust-name"/>
+
+          <label for="lib-username">Phone</label>
+          <input type="number" class="input-fields" id="cust-phone" name="cust-phone" />
+
+          <label for="lib-username">email</label>
+          <input type="text" class="input-fields" id="cust-email" name="cust-email" />
+
+          <label for="lib-username">address</label>
+          <input type="text" class="input-fields" id="cust-address" name="cust-address"/>
+
+          <label for="lib-username">Membership-Period</label>
+          <input type="number" class="input-fields" id="membership-period" name="membership-period" />
+
+          <button type="button" id="createCustomerBtn">create new customer</button>
+         </form>
+
+
+         <h3>Delete Customer</h3>
+            <input type="number" id="removeCustField"/>
+            <button type="button" id="deleteCustBtn">Delete Customer</button>
+        </div>
+
+      <div>
+        <h3>Book Register</h3>
+      </div>
+
+      <div>
+        <h3>Library Customer Register</h3>
+      </div>
+    </section>
+  </body>
+</html>
