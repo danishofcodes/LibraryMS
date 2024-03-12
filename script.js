@@ -65,39 +65,69 @@ function login() {
             newCustomerObject.id = uniqueID();
             custList.push(newCustomerObject);
             // console.log(custList[0].id)
-            // console.log(custList)
+            console.log(custList)
 
         }
-        // to add unique ID to each Customer
         function uniqueID() {
             return Math.floor(Math.random() * 1000000) + Date.now();
         }
 
+        deleteCustBtn.addEventListener("click", () => {
+            const custID = removeCustField.value;
+            // console.log(custID);
+            custList = removeCustomer(custID, custList); // Update the original list with filtered result
+            // console.log(custList);
+        });
+
+        function removeCustomer(customerID, customerList) {
+            console.log(customerID);
+
+            console.log("Items before filtering:", customerList);
+            // this is to find the index of the exact item that has the customerID we trying to search for
+            // to give us a performace improvement to look into the exact index in the customerList to filter it and exclude out of the array 
+              
+            const indexMatch = customerList.findIndex((item) => customerID == item.id);
+            console.log(indexMatch)
+
+            if (indexMatch !== -1) {
+                const filteredList = customerList.filter((item, index) => index != indexMatch);
+                console.log("Items after filtering:", filteredList);
+                errlog_ID_NotFound.style.display = "none";
+                successLogFoundandRemoved.style.display = "block";
+                successLogFoundandRemoved.textContent = `Customer (${customerID}) Successfully Deleted!`;
+                return filteredList;
+            //  here we stored it in filteredList after exclusion of the item, we will now return the value and change the original value of customerList
+            
+
+            } else {
+                // if we cant find customer,, in case ID is invalid then we should prompt:  Customer not found, log informative message and return original list
+                successLogFoundandRemoved.style.display = "none";
+                errlog_ID_NotFound.style.display = "block";
+
+                 errlog_ID_NotFound.textContent =  "No such Customer ID exists: " + customerID ;
+                return customerList;
+            }
+        }
 
 
-    deleteCustBtn.addEventListener("click", () => {
-        const custID = removeCustField.value;
-        console.log(custID);
-      
-        custList = removeCustomer(custID, custList); // Update the original list with filtered result
-        // console.log(custList);
-      });
-      
-      function removeCustomer(customerID, customerList) {
-        console.log(customerID);
-        console.log("Items before filtering:", customerList);
-        const filteredList = customerList.filter((item) => customerID != item.id);
-        console.log("Items after filtering:", filteredList);
-        return filteredList;
-      }
-      
 
 
 
-} else {
-    // Password incorrect leads to message prompt :
-    console.log("access denied, username or password is incorrect");
-    // loginScreen.style.display = "block";
+
+
+
+
+
+
+
+
+    } else {
+        console.log("access denied, username or password is incorrect");
+        loginScreen.style.display = "block";
+    }
+
 }
 
-}
+
+
+// _______________

@@ -1,0 +1,145 @@
+section.login-sec{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ 
+ .login-cont{
+     height: 200px;
+     width: 325px;
+     background: #BBE2EC;
+     border-radius: 20px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     /* box-shadow: #0D9276 0px 0px 0px 3px; */
+ }
+ 
+ 
+ .login-cont label{
+  font-size: 14px;
+  color: #0a7591;
+ }
+ .login-cont input{
+     padding: 5px;
+     display: flex;
+     border: 0;
+     border-radius: 20px;
+ }
+ 
+ .login-cont  button{
+     background: #ff6e7b;
+     border: 0;
+     padding: 5px 20px;
+     border-radius: 20px;
+     color: #fff;
+     margin-top: 10px;
+     cursor: pointer;
+     /* border: 2px solid #dddddd00; */
+     transform: transition smooth 0.3s;;
+ }
+ 
+ .login-cont form  button:hover{
+     background: #fc5462;
+     /* border: 2px solid #ff1f1f; */
+     transform: scale(1.03);
+     transition: 0.3s;
+ }
+ 
+ .container{
+     background-color: #e5e5e5;
+     padding: 15px;
+     font-size: 12px;
+     border: 2px solid #c5c5c5;
+     border-radius: 8px;
+ 
+ }
+ 
+ .delete-container{
+     background-color: #ffd0d0;
+     padding: 15px;
+     font-size: 12px;
+     border: 2px solid #ff6868;
+     border-radius: 8px;
+ }
+ .delete-container #errlog_ID_NotFound{
+     color: #ff6868;
+     display: none;
+ }
+ #successLogFoundandRemoved{
+     display: none;
+ }
+ .form-content{
+      display: flex;
+      align-items: center;
+     /* flex-direction: column; */ 
+ }
+ 
+ .container input{
+     border: 1px solid #c5c5c5;
+     padding: 5px;
+     border-radius: 4px;
+     width: 110px;
+ }
+ 
+ .inp-group{
+     display: flex;
+     flex-direction: column;
+     width: 200px;
+ }
+ 
+ .button-custom-dark{
+     background: #303030;
+     border: none;
+     padding: 5px;
+ 
+     color: #fff;
+     border-radius: 4px;
+     height: 42px !important;
+ 
+ }
+ 
+ .button-custom-dark:hover{
+     background: #525252;
+    cursor: pointer;
+ 
+ }
+
+ .deleteBtn{
+    background: #ff6868;
+  border: none;
+  border:  2px solid #ff6868;
+  padding: 5px;
+  color: #fff;
+  border-radius: 4px;
+  height: 42px !important;
+  margin-left: 10px;
+}
+
+ .deleteBtn:hover{
+    background: #ff4f4f;
+  border: none;
+  cursor: pointer;
+
+ }
+
+ .input-fields{
+    border: 1px solid #c5c5c5;
+    padding: 5px;
+    border-radius: 4px;
+ }
+ .button-custom-success{
+    background: #46d59a;
+    border: none;
+    padding: 5px;
+
+    color: #fff;
+    border-radius: 4px;
+    height: 42px !important;
+ }
+
+ .button-custom-success:hover{
+    background: #21ae73;
+    cursor: pointer;
+ }

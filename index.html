@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LibraryMS</title>
-    <script src="script.js" defer></script>
-  </head>
 
-  <body>
-    <div class="login" id="login">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LibraryMS</title>
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <section class="login-sec" id="login">
+
+
+    <div class="login-cont">
       <form>
-        <label for="lib-username">Usernam</label>
+        <label for="lib-username">Username</label>
         <input type="text" class="input-fields" id="lib-username" />
         <br />
         <label for="lib-password">Password</label>
@@ -19,51 +25,115 @@
       </form>
     </div>
 
-    <section id="libraryMS" style="display: none">
-      <button type="button" id="logout">logout</button>
-      <h3>Library Management System</h3>
-      <p>Hey, welcome</p>
 
-      <ul>
-        <li id="create-new-cusstomer">create new customer</li>
-        <li id="book-register">Book Register</li>
-        <li id="lcr">Library Customer Register</li>
-      </ul>
+  </section>
 
-      <div>
-        <h3>Create New Customer</h3>
-        <form action="" id="createNewCustomerForm">
-          <label for="lib-username">Name</label>
-          <input type="text" class="input-fields" id="cust-name" name="cust-name"/>
+  <section id="libraryMS" style="display: none">
+    <button type="button" id="logout">logout</button>
+    <h3>Library Management System</h3>
+    <p>Hey, welcome</p>
 
-          <label for="lib-username">Phone</label>
-          <input type="number" class="input-fields" id="cust-phone" name="cust-phone" />
+    <ul>
+      <li id="create-new-cusstomer">create new customer</li>
+      <li id="book-register">Book Register</li>
+      <li id="lcr">Library Customer Register</li>
+    </ul>
 
-          <label for="lib-username">email</label>
-          <input type="text" class="input-fields" id="cust-email" name="cust-email" />
+    <div class="tab-content">
 
-          <label for="lib-username">address</label>
-          <input type="text" class="input-fields" id="cust-address" name="cust-address"/>
-
-          <label for="lib-username">Membership-Period</label>
-          <input type="number" class="input-fields" id="membership-period" name="membership-period" />
-
-          <button type="button" id="createCustomerBtn">create new customer</button>
-         </form>
+    </div>
 
 
-         <h3>Delete Customer</h3>
-            <input type="number" id="removeCustField"/>
-            <button type="button" id="deleteCustBtn">Delete Customer</button>
+    <div>
+      <h3>Create New Customer</h3>
+      <div class="container">
+        <form action="" id="createNewCustomerForm" class="form-content">
+          <div class="inp-group">
+            <label for="lib-username">Name</label>
+            <input type="text" class="input-fields" id="cust-name" name="cust-name" />
+          </div>
+
+          <div class="inp-group">
+            <label for="lib-username">Phone</label>
+            <input type="number" class="input-fields" id="cust-phone" name="cust-phone" />
+          </div>
+          <div class="inp-group">
+            <label for="lib-username">email</label>
+            <input type="text" class="input-fields" id="cust-email" name="cust-email" />
+          </div>
+          <div class="inp-group">
+            <label for="lib-username">address</label>
+            <input type="text" class="input-fields" id="cust-address" name="cust-address" />
+          </div>
+          <div class="inp-group">
+            <label for="lib-username">Membership-Period</label>
+            <input type="number" class="input-fields" id="membership-period" name="membership-period" />
+          </div>
+          <div class="inp-group">
+            <button type="button" class="button-custom-dark" id="createCustomerBtn">create new customer</button>
+        </form>
+      </div>
+    </div>
+
+
+
+    <h3>Delete Customer</h3>
+    <div class="delete-container ">
+      <form class="form-content">
+        <div class="inp-group">
+          <label for="lib-username">Customer ID</label>
+          <input type="number" id="removeCustField" class="input-fields" />
         </div>
 
-      <div>
-        <h3>Book Register</h3>
-      </div>
+        <button type="button" class="deleteBtn" id="deleteCustBtn">Delete Customer</button>
+        <span id="successLogFoundandRemoved"></span>
+        <span id="errlog_ID_NotFound"></span>
+      </form>
+    </div>
+    </div>
 
-      <div>
-        <h3>Library Customer Register</h3>
+    <div>
+      <h3>Book Register</h3>
+
+      <h5>Add new book</h5>
+      <div class="container">
+        <form action="" id="" class="form-content">
+          <div class="inp-group">
+            <label for="bookname">Book Name</label>
+            <input type="text" class="input-fields" id="bookname" name="bookname" />
+          </div>
+
+          <div class="inp-group">
+            <label for="bookauthor">Book Author</label>
+            <input type="number" class="input-fields" id="bookauthor" name="bookauthor" />
+          </div>
+          <div class="inp-group">
+            <label for="bookpages">Book Pages</label>
+            <input type="text" class="input-fields" id="bookpages" name="bookpages" />
+          </div>
+          <div class="inp-group">
+            <label for="bookprice">Book Price</label>
+            <input type="text" class="input-fields" id="bookprice" name="bookprice" />
+          </div>
+          <div class="inp-group">
+            <label for="copies">Copies</label>
+            <input type="number" class="input-fields" id="copies" name="copies" />
+          </div>
+          <div class="inp-group">
+            <button type="button" class="button-custom-success" id="addBookBtn">Add New Book</button>
+        </form>
       </div>
-    </section>
-  </body>
+    </div>
+
+    </div>
+
+    <div>
+      <h3>Library Customer Register</h3>
+
+
+
+    </div>
+  </section>
+</body>
+
 </html>
