@@ -23,8 +23,8 @@ const deleteCustBtn = document.getElementById("deleteCustBtn");
 // to validate password and username and login - letting user/librarian see the homepage (right now its just basic, will make it better through iterations )
 loginBtn.addEventListener('click', login)
 function login() {
-    const pass = passwordField.value
-    const user = usernameField.value
+    const pass = username
+    const user = password
 
     if (pass == password && user == username) {
         console.log("Access Allowed");
