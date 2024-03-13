@@ -7,133 +7,284 @@
   <title>LibraryMS</title>
   <script src="script.js" defer></script>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <script src="bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body>
 
-  <section class="login-sec" id="login">
-
-
-    <div class="login-cont">
-      <form>
-        <label for="lib-username">Username</label>
-        <input type="text" class="input-fields" id="lib-username" />
-        <br />
-        <label for="lib-password">Password</label>
-        <input type="password" class="input-fields" id="lib-password" />
-        <button type="button" id="loginbtn">login</button>
-      </form>
+  <section id="login">
+    <div class="login-sec">
+      <div class="login-cont">
+        <form>
+          <label for="lib-username">Username</label>
+          <input type="text" class="input-fields" id="lib-username" />
+          <br />
+          <label for="lib-password">Password</label>
+          <input type="password" class="input-fields" id="lib-password" />
+          <button type="button" id="loginbtn">login</button>
+        </form>
+      </div>
     </div>
-
-
   </section>
 
-  <section id="libraryMS" style="display: none">
-    <button type="button" id="logout">logout</button>
+  <section id="libraryMS" style="display: none" class="container">
+    <button type="button" class="btn btn-danger btn-sm mb-5 mt-2" id="logout">logout</button>
+
     <h3>Library Management System</h3>
     <p>Hey, welcome</p>
 
-    <ul>
-      <li id="create-new-cusstomer">create new customer</li>
-      <li id="book-register">Book Register</li>
-      <li id="lcr">Library Customer Register</li>
+    <!-- Note Section -->
+    <div class="note">
+      <span style="color: #13819d;"><b>Note</b> <p style="padding: 0; margin:0;">Here will be some important notes</p></span>
+    </div>
+
+    <!-- Nav Tabs -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="">
+        <button class="nav-link active" id="issue-book-tab" data-bs-toggle="tab" data-bs-target="#issue-book-tab-pane"
+          type="button" role="tab" aria-controls="issue-book-tab-pane" aria-selected="true">Issue Book</button>
+      </li>
+      <li class="nav-item" role="">
+        <button class="nav-link" id="book-register-tab" data-bs-toggle="tab" data-bs-target="#book-register-tab-pane"
+          type="button" role="tab" aria-controls="book-register-tab-pane" aria-selected="false">Book Register</button>
+      </li>
+      <li class="nav-item" role="">
+        <button class="nav-link" id="create-new-patron-tab" data-bs-toggle="tab"
+          data-bs-target="#create-new-patron-tab-pane" type="button" role="tab"
+          aria-controls="create-new-patron-tab-pane" aria-selected="false">Create New Patron</button>
+      </li>
+      <li class="nav-item" role="">
+        <button class="nav-link" id="blacklist-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button"
+          role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Blacklist</button>
+      </li>
     </ul>
 
-    <div class="tab-content">
+    <!-- All Tabs Tabs -->
 
-    </div>
+    <div class="tab-content tab-custom-container" id="myTabContent">
+
+ <!-- To Fetch Details of the Patron and see whether he has any dues and other details-->
+      <div class="tab-pane fade show active" id="issue-book-tab-pane" role="tabpanel" aria-labelledby="issue-book-tab"
+        tabindex="0">
+        <section id="IssueDetails">
+
+          <h5>Enter Patron ID</h5>
+          <form>
+            <div class="row g-3 align-items-center">
+              <div class="col-auto">
+                <label for="patronID_check" class="col-form-label">Patron ID :</label>
+              </div>
+              <div class="col-auto">
+                <input type="number" id="patronID_check" class="form-control" aria-describedby="" style="width: 160px;">
+              </div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-dark" id="fetchpatrondetails">Fetch Details</button>
+
+              </div>
+              <div class="col-auto">
+                <span id="msg_searchResPatron" class="form-text">
+                  1 Match Found PatronID (363819071)
+                </span>
+              </div>
+            </div>
+          </form>
 
 
-    <div>
-      <h3>Create New Customer</h3>
-      <div class="container">
-        <form action="" id="createNewCustomerForm" class="form-content">
-          <div class="inp-group">
-            <label for="lib-username">Name</label>
-            <input type="text" class="input-fields" id="cust-name" name="cust-name" />
+          <div class="my-3">
+            <table class="table table table-striped">
+              <thead>
+                <th>Patron ID</th>
+                <th>Patron Name</th>
+                <th>Book Issued</th>
+                <th>Author Name</th>
+                <th>Publisher Name</th>
+                <th>Date Of Return</th>
+                <th>Due</th>
+              </thead>
+
+              <tbody>
+                <td>37843</td>
+                <td>Mario</td>
+                <td>Narnia</td>
+                <td>Keith</td>
+                <td>penguin</td>
+                <td>27th Feb 2024</td>
+                <td>Yes</td>
+              </tbody>
+            </table>
           </div>
 
-          <div class="inp-group">
-            <label for="lib-username">Phone</label>
-            <input type="number" class="input-fields" id="cust-phone" name="cust-phone" />
+<!-- Button Leading to Issue books Modal -->
+          <div class="row">
+            <div class="col-auto">
+              <button type="button" class="btn btn-success my-2" id="submit" data-bs-toggle="modal"
+                data-bs-target="#issueNewBookModal">Issue New Book</button>
+            </div>
           </div>
-          <div class="inp-group">
-            <label for="lib-username">email</label>
-            <input type="text" class="input-fields" id="cust-email" name="cust-email" />
-          </div>
-          <div class="inp-group">
-            <label for="lib-username">address</label>
-            <input type="text" class="input-fields" id="cust-address" name="cust-address" />
-          </div>
-          <div class="inp-group">
-            <label for="lib-username">Membership-Period</label>
-            <input type="number" class="input-fields" id="membership-period" name="membership-period" />
-          </div>
-          <div class="inp-group">
-            <button type="button" class="button-custom-dark" id="createCustomerBtn">create new customer</button>
-        </form>
+
+
+
+        </section>
       </div>
-    </div>
+ <!-- To Fetch Details of a book in the library to see whether it is existing, or available to issue, or not  -->
 
+      <div class="tab-pane fade" id="book-register-tab-pane" role="tabpanel" aria-labelledby="book-register-tab"
+        tabindex="0">
+        <section id="bookdetails">
+          <form>
+            <div class="row g-3 align-items-center">
+              <div class="col-auto">
+                <label for="bookname" class="col-form-label">Book Name :</label>
+              </div>
+              <div class="col-auto">
+                <input type="text" id="bookname" class="form-control" aria-describedby="" style="width: 160px;">
+              </div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-dark" id="fetchbookdetails">Fetch Details</button>
 
+              </div>
+              <div class="col-auto">
+                <span id="msg_searchResBook" class="form-text">
+                  1 Match Found
+                </span>
+              </div>
+            </div>
+          </form>
 
-    <h3>Delete Customer</h3>
-    <div class="delete-container ">
-      <form class="form-content">
-        <div class="inp-group">
-          <label for="lib-username">Customer ID</label>
-          <input type="number" id="removeCustField" class="input-fields" />
-        </div>
+          <div class="my-3">
+            <table class="table table table-striped">
+              <thead>
+                <th>Book Name</th>
+                <th>Author Name</th>
+                <th>Publisher Name</th>
+                <th>Total No. Of Copies</th>
+                <th>Issued</th>
+                <th>Lost</th>
+              </thead>
 
-        <button type="button" class="deleteBtn" id="deleteCustBtn">Delete Customer</button>
-        <span id="successLogFoundandRemoved"></span>
-        <span id="errlog_ID_NotFound"></span>
-      </form>
-    </div>
-    </div>
-
-    <div>
-      <h3>Book Register</h3>
-
-      <h5>Add new book</h5>
-      <div class="container">
-        <form action="" id="" class="form-content">
-          <div class="inp-group">
-            <label for="bookname">Book Name</label>
-            <input type="text" class="input-fields" id="bookname" name="bookname" />
+              <tbody>
+                <td>Narnia</td>
+                <td>Keith</td>
+                <td>Penguin</td>
+                <td>53</td>
+                <td>12</td>
+                <td>0</td>
+              </tbody>
+            </table>
           </div>
-
-          <div class="inp-group">
-            <label for="bookauthor">Book Author</label>
-            <input type="number" class="input-fields" id="bookauthor" name="bookauthor" />
-          </div>
-          <div class="inp-group">
-            <label for="bookpages">Book Pages</label>
-            <input type="text" class="input-fields" id="bookpages" name="bookpages" />
-          </div>
-          <div class="inp-group">
-            <label for="bookprice">Book Price</label>
-            <input type="text" class="input-fields" id="bookprice" name="bookprice" />
-          </div>
-          <div class="inp-group">
-            <label for="copies">Copies</label>
-            <input type="number" class="input-fields" id="copies" name="copies" />
-          </div>
-          <div class="inp-group">
-            <button type="button" class="button-custom-success" id="addBookBtn">Add New Book</button>
-        </form>
+        </section>
       </div>
-    </div>
 
-    </div>
+  <!-- To create new Patron whenever a Persons Subscribes to Library Services -->
 
-    <div>
-      <h3>Library Customer Register</h3>
+      <div class="tab-pane fade" id="create-new-patron-tab-pane" role="tabpanel" aria-labelledby="create-new-patron-tab"
+        tabindex="0">
+        <section id="createnewpatron">
+          <form>
+            <div class="row g-3 align-items-center">
+              <div class="col-lg-3">
+                <label for="createpatronName" class="form-label">Patron Name</label>
+                <input type="text" class="form-control" id="createpatronName" placeholder="">
+              </div>
+              <div class=" col-lg-3 col-md-6">
+                <label for="createpatronPhone" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="createpatronPhone">
+              </div>
+              <div class=" col-lg-3 col-md-6">
+                <label for="createpatronEmail" class="form-label">Email</label>
+                <input type="text" class="form-control" id="createpatronEmail">
+              </div>
 
+              <div class=" col-lg-3 col-md-6">
+                <label for="inputCity" class="form-label">Residential Address</label>
+                <!-- <textarea class="form-control" style="resize: none;" rows=""></textarea> -->
+                <input type="text" id="inputCity" class="form-control">
+              </div>
 
+              <div class=" col-lg-3 col-md-6">
+                <label for="createpatronMembershipPeriod" class="form-label">Membership Period</label>
+                <input type="text" class="form-control" id="createpatronMembershipPeriod">
+              </div>
 
+              <div class="col-auto pt-4">
+                <button type="button" class="btn btn-dark mt-2" id="createNewPatronBtn">Create New Patron</button>
+
+              </div>
+          </form>
+      </div>
+
+  <!-- To show all Blacklisted People Who once issued book but never returned -->
+
+      <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">...
+      </div>
     </div>
   </section>
+
+
+  <!-- MODALS -->
+
+  <!-- ISSUE BOOK MODAL For Issuing Book -->
+  <div class="modal fade" id="issueNewBookModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="issueNewBookModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="issueNewBookModalTitle">Issue Book</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="" id="issueBook">
+            <!-- class="form-content" -->
+            <div class="row g-3 align-items-center mb-2">
+              <div class="col-lg-6">
+                <label for="issueNewBookName" class="form-label">Book Name : </label>
+              </div>
+              <div class="col-lg-6">
+                <input type="text" class="form-control" id="issueNewBookName" placeholder="Enter Book Name">
+              </div>
+            </div>
+
+            <div class="row g-3 align-items-center mb-2">
+              <div class="col-lg-6">
+                <label for="issueNewBookAuthorName" class="form-label">Author Name : </label>
+              </div>
+              <div class="col-lg-6">
+                <input type="text" class="form-control" id="issueNewBookAuthorName">
+              </div>
+            </div>
+
+
+            <div class="row g-3 align-items-center mb-2">
+              <div class="col-lg-6">
+                <label for="issuedBookReturnDate" class="form-label">Date Of Return : </label>
+              </div>
+              <div class="col-lg-6">
+                <input type="date" class="form-control" id="issuedBookReturnDate">
+
+              </div>
+            </div>
+
+            <div class="row g-3 align-items-center mb-2">
+              <div class="col-lg-6">
+                <label for="penaltyAfterDue" class="form-label">Fine After Due Date : </label>
+              </div>
+              <div class="col-lg-6">
+
+                <input type="number" class="form-control" id="penaltyAfterDue">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark mt-2" id="ApproveNewIssue">Approve Issue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </body>
 
 </html>
