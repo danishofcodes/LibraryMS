@@ -159,3 +159,18 @@ body{
     border: 1px solid #7ad0e6;
     font-weight: 300;
  }
+
+ .patronData{
+    background-color: #cccccc;
+    border-radius: 10px;
+    padding: 10px;
+    width: max-content;
+    margin-top: 20px;
+ }
+ .patronData ul{
+    margin: 0;
+ }
+ .patronData ul li{
+    display: inline;
+    margin-right: 20px;
+ }
