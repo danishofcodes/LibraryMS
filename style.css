@@ -14,6 +14,9 @@ body{
  }
  
  .login-cont{
+     height: 200px;
+     width: 325px;
+     padding: 20px;
      background: #BBE2EC;
      border-radius: 20px;
      display: flex;
@@ -21,6 +24,7 @@ body{
      align-items: center;
      /* box-shadow: #0D9276 0px 0px 0px 3px; */
  }
+ 
  
  .login-cont label{
   font-size: 14px;
