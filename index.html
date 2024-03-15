@@ -71,8 +71,10 @@
         <section id="IssueDetails">
 
           <h5>Enter Patron ID</h5>
-          <form>
-            <div class="row g-3 align-items-center">
+
+          <div class="row g-3 align-items-center">
+            <form class="col-auto">
+              <div class="row g-3 align-items-center">
               <div class="col-auto">
                 <label for="patronID_check" class="col-form-label">Patron ID :</label>
               </div>
@@ -83,36 +85,40 @@
                 <button type="button" class="btn btn-dark" id="fetchpatrondetails">Fetch Details</button>
 
               </div>
+              </div>
+            </form>
               <div class="col-auto">
                 <span id="msg_searchResPatron" class="form-text">
                   1 Match Found PatronID (363819071)
                 </span>
               </div>
             </div>
-          </form>
+        
+         <div class="patronData">
+          
+          <div class="col-auto">
+            <ul style="list-style-type: none; padding-left: 0 ;margin-left: 0;">
+              <li style="margin-bottom: 10px;"><b>Patron ID :&nbsp;</b><span id="issueDetailsTbl_patronID">No Data</span></li>
+              <li style="margin-bottom: 10px;"><b>Patron Name :&nbsp;</b><span id="issueDetailsTbl_patronName">No Data</span></li>
+              <li style="margin-bottom: 10px;"><b>Patron Phone :&nbsp;</b><span id="issueDetailsTbl_patronPhone">No Data</span></li>
+            </ul>
+        </div>
+         </div>
 
 
           <div class="my-3">
             <table class="table table table-striped">
               <thead>
-                <th>Patron ID</th>
-                <th>Patron Name</th>
                 <th>Book Issued</th>
                 <th>Author Name</th>
                 <th>Publisher Name</th>
+                <th>Date Of Issue</th>
                 <th>Date Of Return</th>
-                <th>Due</th>
+                <th>Late</th>
               </thead>
+           <!-- the details will be rendered in tbody based on no of book issued -->
+              <tbody id="bookIssuedTblData"></tbody>
 
-              <tbody>
-                <td>37843</td>
-                <td>Mario</td>
-                <td>Narnia</td>
-                <td>Keith</td>
-                <td>penguin</td>
-                <td>27th Feb 2024</td>
-                <td>Yes</td>
-              </tbody>
             </table>
           </div>
 
@@ -182,30 +188,31 @@
       <div class="tab-pane fade" id="create-new-patron-tab-pane" role="tabpanel" aria-labelledby="create-new-patron-tab"
         tabindex="0">
         <section id="createnewpatron">
-          <form>
+          <form id="createNewPatronForm">
             <div class="row g-3 align-items-center">
               <div class="col-lg-3">
-                <label for="createpatronName" class="form-label">Patron Name</label>
-                <input type="text" class="form-control" id="createpatronName" placeholder="">
+                <label for="patronName" class="form-label">Patron Name</label>
+                <input type="text" class="form-control" id="patronName" name="patronName" placeholder="">
               </div>
               <div class=" col-lg-3 col-md-6">
-                <label for="createpatronPhone" class="form-label">Phone</label>
-                <input type="text" class="form-control" id="createpatronPhone">
+                <label for="patronPhone" class="form-label">Phone</label>
+                <input type="number" class="form-control" id="patronPhone" name="patronPhone">
               </div>
               <div class=" col-lg-3 col-md-6">
-                <label for="createpatronEmail" class="form-label">Email</label>
-                <input type="text" class="form-control" id="createpatronEmail">
+                <label for="patronEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="patronEmail" name="patronEmail">
               </div>
 
               <div class=" col-lg-3 col-md-6">
-                <label for="inputCity" class="form-label">Residential Address</label>
+                <label for="residentialAddress" class="form-label">Residential Address</label>
                 <!-- <textarea class="form-control" style="resize: none;" rows=""></textarea> -->
-                <input type="text" id="inputCity" class="form-control">
+                <input type="text" id="inputCity" class="form-control" name="residentialAddress">
               </div>
 
+              
               <div class=" col-lg-3 col-md-6">
-                <label for="createpatronMembershipPeriod" class="form-label">Membership Period</label>
-                <input type="text" class="form-control" id="createpatronMembershipPeriod">
+                <label for="createMembershipPeriod" class="form-label">Membership Period</label>
+                <input type="number" class="form-control" id="createMembershipPeriod" name="membershipPeriod">
               </div>
 
               <div class="col-auto pt-4">
