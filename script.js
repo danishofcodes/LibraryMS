@@ -26,6 +26,16 @@ const issueDetailsTbl_patronPhone = document.getElementById("issueDetailsTbl_pat
 
 // to validate password and username and login - letting user/librarian see the homepage (right now its just basic, will make it better through iterations )
 
+const issueDetailsTbl_bookIssued = document.getElementById("issueDetailsTbl_bookIssued");
+const issueDetailsTbl_authorName = document.getElementById("issueDetailsTbl_authorName")
+const issueDetailsTbl_dateOfIssue = document.getElementById("issueDetailsTbl_dateOfIssue")
+const issueDetailsTbl_publisher = document.getElementById("issueDetailsTbl_publisher")
+const issueDetailsTbl_dateOfReturn = document.getElementById("issueDetailsTbl_dateOfReturn")
+const issueDetailsTbl_late = document.getElementById("issueDetailsTbl_late")
+const bookIssuedTblData = document.getElementById("bookIssuedTblData");
+
+
+
 loginBtn.addEventListener('click', login)
 function login() {
     const pass = username
@@ -114,6 +124,22 @@ function login() {
                 issued: 18,
                 lost: 2
             },
+            {
+                bookName: "The Hitchhiker's Guide to the Galaxy",
+                authorName: "Douglas Adams",
+                publisherName: "Pan Books",
+                totalNoOfCopies: 25,
+                issued: 15,
+                lost: 0,
+              },
+              {
+                bookName: "Dune",
+                authorName: "Frank Herbert",
+                publisherName: "Chilton Books",
+                totalNoOfCopies: 60,
+                issued: 35,
+                lost: 4,
+              },
         ];
 
         console.log(bookregister)
@@ -195,10 +221,33 @@ function login() {
 
 
 
+            // created Book register section , having details like book name. author, publisher, total no. of copies, issued no of copies, and lost copies. 
 
+const showallbooks =  document.getElementById("showallbooks");
+const bookregisterTblData = document.getElementById("bookregisterTblData");
 
+showallbooks.addEventListener('click', ()=> renderBookRegister(bookregister))
 
-
+            function renderBookRegister(collections) {
+                console.log("working")
+                bookregisterTblData.innerHTML = "";
+                collections.forEach((item)=>{
+                 
+                let row = `<tr>
+                <td>${item.bookName}</td>
+                <td>${item.authorName}</td>
+                <td>${item.publisherName}</td>
+                <td>${item.totalNoOfCopies}</td>
+                <td>${item.issued}</td>
+                <td>${(item.totalNoOfCopies - item.lost ) - item.issued}</td>
+                <td>${item.lost}</td>
+                </tr>`;
+                bookregisterTblData.innerHTML += row;
+                })
+                
+             
+    
+            }
 
 
 
@@ -219,7 +268,7 @@ function login() {
                 console.log("Not found")
             } else {
                 console.log("found at index : " + matchIndex + " patron ID :" + patronID)
-                fetchPatronDetails(patronID, patronList, matchIndex);
+                fetchissueDetails(patronID, patronList, matchIndex);
             }
             // here we are filtering out matches against patron ID and adding the issue details of books in a new array 
             // which we further pass onto renderBookIssuedDetails() as (collections)
@@ -234,7 +283,7 @@ function login() {
             renderBookIssuedDetails(collections)
         }
 
-        function fetchPatronDetails(patronID, patronList, matchIndex) {
+        function fetchissueDetails(patronID, patronList, matchIndex) {
             console.log(patronID);
             console.log(patronList);
             console.log(matchIndex);
@@ -262,7 +311,6 @@ function login() {
          
 
         }
-
         // Function for Adding new Customer 
         function addCust(newPatron) {
             const newPatronObject = Object.fromEntries(newPatron.entries());
