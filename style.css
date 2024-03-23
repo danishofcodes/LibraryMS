@@ -175,3 +175,30 @@ body{
     display: inline;
     margin-right: 20px;
  }
+
+ .header-fixed thead tr th{
+    position: sticky;
+    top:0;
+    background-color: #303030;
+    color: #fff;
+ }
+
+.lightbluBtn{
+    background-color: #dcf8ff!important;
+}
+
+.div-data-sec{
+    display:none;
+
+}
+
+.div-data{
+    background: #cff2f4;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: 600;
+    color: #336f72;
+}
