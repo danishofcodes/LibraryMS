@@ -30,8 +30,10 @@
   </section>
 
   <section id="libraryMS" style="display: none" class="container">
+    <div class="flex justify-content-between">
     <button type="button" class="btn btn-danger btn-sm mb-5 mt-2" id="logout">logout</button>
-
+    <button type="button" class="btn btn-light btn-sm mb-5 mt-2 border-warning" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"> {?} test-cases</button>
+  </div>
     <h3>Library Management System</h3>
     <p>Hey, welcome</p>
 
@@ -107,7 +109,7 @@
 
 
           <div class="my-3">
-            <table class="table table table-striped">
+            <table class="table table table-striped ">
               <thead>
                 <th>Book Issued</th>
                 <th>Author Name</th>
@@ -141,14 +143,17 @@
         <section id="bookdetails">
           <form>
             <div class="row g-3 align-items-center">
+              <div class="col-12">
+                <button type="button" class="btn btn-success" id="showallbooks">Show All Books</button>
+              </div>
               <div class="col-auto">
                 <label for="bookname" class="col-form-label">Book Name :</label>
               </div>
               <div class="col-auto">
-                <input type="text" id="bookname" class="form-control" aria-describedby="" style="width: 160px;">
+                <input type="text" id="bookID_check" class="form-control" aria-describedby="" style="width: 160px;">
               </div>
               <div class="col-auto">
-                <button type="button" class="btn btn-dark" id="fetchbookdetails">Fetch Details</button>
+                <button type="button" class="btn btn-primary text-white" id="searchByBookId">Fetch Details</button>
 
               </div>
               <div class="col-auto">
@@ -159,25 +164,20 @@
             </div>
           </form>
 
-          <div class="my-3">
-            <table class="table table table-striped">
+          <div class="my-3 overflow-auto"  style="max-height:200px!important;">
+            <table class="table table table-striped header-fixed">
               <thead>
+                <th>Actions</th>
                 <th>Book Name</th>
                 <th>Author Name</th>
                 <th>Publisher Name</th>
-                <th>Total No. Of Copies</th>
+                <th>Total Copies</th>
                 <th>Issued</th>
+                <th>Available</th>
                 <th>Lost</th>
               </thead>
 
-              <tbody>
-                <td>Narnia</td>
-                <td>Keith</td>
-                <td>Penguin</td>
-                <td>53</td>
-                <td>12</td>
-                <td>0</td>
-              </tbody>
+              <tbody id="bookregisterTblData"></tbody>
             </table>
           </div>
         </section>
@@ -235,6 +235,78 @@
   <!-- ISSUE BOOK MODAL For Issuing Book -->
   <div class="modal fade" id="issueNewBookModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="issueNewBookModal" aria-hidden="true">
+    <div class="modal-dialog  modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="issueNewBookModalTitle">Issue Book</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="" id="issueBook">
+            <!-- class="form-content" -->
+            <div class="row g-3 align-items-center mb-2">
+              <div class="col-lg-6">
+                <label for="issueNewBookName" class="form-label">Book Name : </label>
+              </div>
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-lg-9">
+                    <input type="text" class="form-control" id="book_name_mdl" placeholder="Enter Book Name">
+
+                  </div>
+                  <div class="col-lg-3">
+                         <button type="button" class="btn btn-dark" id="searchBookDetails_mdl">Search</button>
+                    
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row g-3 align-items-center mb-2">
+              <div class="col-lg-12">
+                 <div class="div-data-sec">
+                  <div class="div-data">
+                   <label>Book ID : <span id="fetched_bk_id"></span></label>
+                   <label>Book Name : <span id="fetched_bk_name"></span></label>
+                   <label>Book Available : <span id="fetched_bk_available"></span></label>
+                  </div>
+                 </div>
+              </div>
+            </div>
+
+            <div class="row g-3 align-items-center mb-2">
+              <div class="col-lg-6">
+                <label for="issuedBookReturnDate" class="form-label">Date Of Return : </label>
+              </div>
+              <div class="col-lg-6">
+                <input type="date" class="form-control" id="issuedBookReturnDate">
+
+              </div>
+            </div>
+
+            <div class="row g-3 align-items-center mb-2">
+              <div class="col-lg-6">
+                <label for="penaltyAfterDue" class="form-label">Fine After Due Date : </label>
+              </div>
+              <div class="col-lg-6">
+
+                <input type="number" class="form-control" id="penaltyAfterDue">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark mt-2" id="ApproveNewIssue">Approve Issue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ISSUE BOOK MODAL For Issuing Book -->
+  <div class="modal fade" id="issueNewBookModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="issueNewBookModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -253,15 +325,7 @@
               </div>
             </div>
 
-            <div class="row g-3 align-items-center mb-2">
-              <div class="col-lg-6">
-                <label for="issueNewBookAuthorName" class="form-label">Author Name : </label>
-              </div>
-              <div class="col-lg-6">
-                <input type="text" class="form-control" id="issueNewBookAuthorName">
-              </div>
-            </div>
-
+       
 
             <div class="row g-3 align-items-center mb-2">
               <div class="col-lg-6">
@@ -292,6 +356,43 @@
   </div>
 
 
+<!-- OFFCANVAS FOR TESTCASES -->
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Test Cases</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body small">
+    For easy testing of the features of my project I have gathered all the useful test variables here which you can use:
+
+    <ol>
+      <li><b>PatronID's :</b> 
+          <ul>
+            <li>1710399883333</li>
+            <li>1710399883332</li>
+            <li>1710399883331</li>
+          </ul>
+      </li>
+      <li><b>Book ID's :</b>
+        <ul>
+          <li>book-1825</li>
+          <li>book-1826</li>
+          <li>book-1827</li>
+          <li>book-1828</li>
+        </ul>
+      </li>
+      <li><b>Book Names :</b>
+        <ul>
+          <li>Dune</li>
+          <li>to kill a mocking bird</li>
+          <li>1984</li>
+        </ul>
+      </li>
+      <li><b>Black List IDs :</b>
+       <ul><li>710399883331</li></ul>
+    </ol>
+  </div>
+</div>
 </body>
 
 </html>
