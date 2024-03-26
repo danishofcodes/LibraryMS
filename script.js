@@ -1,8 +1,11 @@
 // import 'bookregister' from './data.js'
 
 // V1.0 LibraryMS
-const username = "lib@here"; //predefined for testing
-const password = "lib@here"; //predefined for testing
+// const username = "@librarian"; //predefined for testing
+// const password = "lib@here"; //predefined for testing
+
+const password = document.getElementById("lib-password").value;
+const username = document.getElementById("lib-username").value;
 const loginScreen = document.getElementById("login");
 const loginBtn = document.getElementById("loginbtn");
 const logoutMS = document.getElementById("logout");
@@ -53,13 +56,15 @@ const fetched_bk_name = document.getElementById("fetched_bk_name");
 const fetched_bk_available = document.getElementById("fetched_bk_available");
 
 
-
+//This is just a dummy AUTH, its not recommended to store passwords like this, it  should be Hashed properly and then saved for security 
+const pass ="lib@here";
+const user =  "@librarian";
+// 
 
 
 loginBtn.addEventListener("click", login);
 function login() {
-    const pass = username;
-    const user = password;
+ 
 
     if (pass == password && user == username) {
         console.log("Access Allowed");
@@ -245,8 +250,18 @@ let patronBookIssueListObj = [
 
 const showallbooks = document.getElementById("showallbooks");
 const searchByBookId = document.getElementById("searchByBookId");
-const bookID_check = document.getElementById("bookID_check");
+const bookreg_bookIDsearch = document.getElementById("bookreg_bookIDsearch");
 const bookregisterTblData = document.getElementById("bookregisterTblData");
+const bookRegister_issue_bookname = document.getElementById("bookRegister_issue_bookname");
+const bookRegister_issue_authorname = document.getElementById("bookRegister_issue_authorname");
+const bookRegister_issue_publisher = document.getElementById("bookRegister_issue_publisher");
+const bookRegister_issue_avlcopies = document.getElementById("bookRegister_issue_avlcopies");
+const bookRegister_issue_issued = document.getElementById("bookRegister_issue_issued");
+const bookRegister_issue_patronID = document.getElementById("bookRegister_issue_patronID");
+
+
+
+
 
 showallbooks.addEventListener("click", () => renderBookRegister(bookregister)); // Assuming `bookregister` holds your book data
 
@@ -278,19 +293,52 @@ function renderBookRegister(collections) {
 //   console.log(bookItem.bookName);
 // }
 
-searchByBookId.addEventListener("click", () => {
-    BookId = bookID_check.value;
+function bookRegisterIssueBookApprove(e) {
+    let _bkId = e.dataset.bkid;
+    let _final = bookregister.filter((f) => f.id == _bkId);
+    console.log(_final);
 
-    renderByBookID(bookregister);
+    _final.forEach((book)=>{
+       bookRegister_issue_bookname.value = book.bookName;
+       bookRegister_issue_authorname.value = book.authorName;
+       bookRegister_issue_publisher.value = book.publisherName;
+       bookRegister_issue_avlcopies.value= (book.totalNoOfCopies - book.lost) - book.issued;
+       bookRegister_issue_patronID.focus();
+    });
+}
+
+
+searchByBookId.addEventListener("click", () => {
+   const bookId = bookreg_bookIDsearch.value;
+
+    renderByBookID(bookregister, bookId);
 });
 
-function renderByBookID(collections) {
+function renderByBookID(collections, BookId) {
     const matchIndex = collections.findIndex((book) => BookId == book.id);
     console.log(matchIndex);
     if (matchIndex == -1) {
         console.log("Not found");
     } else {
         console.log("found at index : " + matchIndex + " book ID :" + BookId);
+        
+        let row = `<tr class="datarow">
+        <td><button data-bkid="${collections[matchIndex].id
+    }" class="btn btn-success"  onclick="bookRegisterIssueBookApprove(this)"  data-bs-toggle="modal" data-bs-target="#bookRegister_mdl_issue" >Issue</button></td>
+        <td>${collections[matchIndex].bookName}</td>
+        <td>${collections[matchIndex].authorName}</td>
+        <td>${collections[matchIndex].publisherName}</td>
+        <td>${collections[matchIndex].totalNoOfCopies}</td>
+        <td>${collections[matchIndex].issued}</td>
+        <td>${collections[matchIndex].totalNoOfCopies - collections[matchIndex].lost - collections[matchIndex].issued
+    }</td>  
+        <td>${collections[matchIndex].lost}</td>
+    </tr>`;
+
+bookregisterTblData.innerHTML += row;
+
+
+
         fetchissueDetails(patronID, patronList, matchIndex);
     }
     // collections.map(()=>)
@@ -445,26 +493,4 @@ function fetchBookDetailInModal(collections, bookName) {
     }
 }
 
-
-const bookRegister_issue_bookname = document.getElementById("bookRegister_issue_bookname");
-const bookRegister_issue_authorname = document.getElementById("bookRegister_issue_authorname");
-const bookRegister_issue_publisher = document.getElementById("bookRegister_issue_publisher");
-const bookRegister_issue_avlcopies = document.getElementById("bookRegister_issue_avlcopies");
-const bookRegister_issue_issued = document.getElementById("bookRegister_issue_issued");
-const bookRegister_issue_patronID = document.getElementById("bookRegister_issue_patronID");
-
-
-function bookRegisterIssueBookApprove(e) {
-    let _bkId = e.dataset.bkid;
-    let _final = bookregister.filter((f) => f.id == _bkId);
-    console.log(_final);
-
-    _final.forEach((book)=>{
-       bookRegister_issue_bookname.value = book.bookName;
-       bookRegister_issue_authorname.value = book.authorName;
-       bookRegister_issue_publisher.value = book.publisherName;
-       bookRegister_issue_avlcopies.value= (book.totalNoOfCopies - book.lost) - book.issued;
-       bookRegister_issue_patronID.focus();
-    });
-}
 
