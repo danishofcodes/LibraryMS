@@ -304,56 +304,7 @@
     </div>
   </div>
 
-  <!-- ISSUE BOOK MODAL For Issuing Book -->
-  <div class="modal fade" id="issueNewBookModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="issueNewBookModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="issueNewBookModalTitle">Issue Book</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="" id="issueBook">
-            <!-- class="form-content" -->
-            <div class="row g-3 align-items-center mb-2">
-              <div class="col-lg-6">
-                <label for="issueNewBookName" class="form-label">Book Name : </label>
-              </div>
-              <div class="col-lg-6">
-                <input type="text" class="form-control" id="issueNewBookName" placeholder="Enter Book Name">
-              </div>
-            </div>
 
-       
-
-            <div class="row g-3 align-items-center mb-2">
-              <div class="col-lg-6">
-                <label for="issuedBookReturnDate" class="form-label">Date Of Return : </label>
-              </div>
-              <div class="col-lg-6">
-                <input type="date" class="form-control" id="issuedBookReturnDate">
-
-              </div>
-            </div>
-
-            <div class="row g-3 align-items-center mb-2">
-              <div class="col-lg-6">
-                <label for="penaltyAfterDue" class="form-label">Fine After Due Date : </label>
-              </div>
-              <div class="col-lg-6">
-
-                <input type="number" class="form-control" id="penaltyAfterDue">
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-dark mt-2" id="ApproveNewIssue">Approve Issue</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
 <!-- OFFCANVAS FOR TESTCASES -->
@@ -393,6 +344,63 @@
     </ol>
   </div>
 </div>
+
+ <!-- BookRegisterMdl IssueBtn -->
+ <div class="modal fade" id="bookRegister_mdl_issue" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+ aria-labelledby="bookRegister_mdl_issue" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h1 class="modal-title fs-5" id="issueNewBookModalTitle">Issue Book</h1>
+       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+     </div>
+     <div class="modal-body">
+       <div id="showAllBookDetailsForIssue">
+         <form>
+
+           <label> Patron ID
+             <input type="text" id="bookRegister_issue_patronID" class="form-control" placeholder="enter PatronID" />
+           </label>
+           <span class="text-danger" style="font-size: 12px;">*Patron ID is mandatory to issue books</span>
+           <hr>
+           <div class="row g-3 align-items-center mb-2">
+             <div class="col-lg-6">
+               <label> BookName
+                 <input type="text" id="bookRegister_issue_bookname" class="form-control" disabled readonly />
+               </label>
+             </div>
+             <div class="col-lg-6">
+               <label> Author name
+                 <input type="text" id="bookRegister_issue_authorname" class="form-control" disabled readonly />
+               </label>
+             </div>
+           </div>
+
+           <div class="row g-3 align-items-center mb-2">
+             <div class="col-lg-6">
+               <label> Publisher Name
+                 <input type="text" id="bookRegister_issue_publisher" class="form-control" disabled readonly />
+               </label>
+             </div>
+             <div class="col-lg-6">
+
+               <label> Available Copies
+                 <input type="text" id="bookRegister_issue_avlcopies" class="form-control" disabled readonly />
+               </label>
+             </div>
+
+             <button type="button" class="btn btn-dark mt-4" id="bookRegister_issue_approve">Approve and Issue
+               Book</button>
+         </form>
+       </div>
+     </div>
+
+   </div>
+ </div>
+</div>
+
+
+
 </body>
 
 </html>
