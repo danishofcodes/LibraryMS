@@ -422,7 +422,7 @@ searchBookDetails_mdl.addEventListener("click", () => {
 // Details fetched to be shown in the issue book modal
 
 function fetchBookDetailInModal(collections, bookName) {
-    debugger;
+    ;
     console.log("this" + fetched_bk_available);
     _bookName = bookName.toUpperCase();
     console.log("working");
