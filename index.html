@@ -16,13 +16,16 @@
 
   <section id="login">
     <div class="login-sec">
+      <h2>Library<span>MS</span></h2>
+
       <div class="login-cont">
+        <div class="login-title"> <h4>Librarian Login</h4></div>
         <form>
           <label for="lib-username">Username</label>
-          <input type="text" class="input-fields" id="lib-username" />
+          <input type="text" class="input-fields" id="lib-username" value="@librarian"/>
           <br />
           <label for="lib-password">Password</label>
-          <input type="password" class="input-fields" id="lib-password" />
+          <input type="password" class="input-fields" id="lib-password" value="lib@here"/>
           <button type="button" id="loginbtn">login</button>
         </form>
       </div>
@@ -32,7 +35,7 @@
   <section id="libraryMS" style="display: none" class="container">
     <div class="flex justify-content-between">
     <button type="button" class="btn btn-danger btn-sm mb-5 mt-2" id="logout">logout</button>
-    <button type="button" class="btn btn-light btn-sm mb-5 mt-2 border-warning" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"> {?} test-cases</button>
+    <button type="button" class="btn btn-light btn-sm mb-5 mt-2 border-warning" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"> Click here to get test-data {?}</button>
   </div>
     <h3>Library Management System</h3>
     <p>Hey, welcome</p>
@@ -90,9 +93,9 @@
               </div>
             </form>
               <div class="col-auto">
-                <span id="msg_searchResPatron" class="form-text">
+                <!-- <span id="msg_searchResPatron" class="form-text">
                   1 Match Found PatronID (363819071)
-                </span>
+                </span> -->
               </div>
             </div>
         
@@ -150,16 +153,15 @@
                 <label for="bookname" class="col-form-label">Book Name :</label>
               </div>
               <div class="col-auto">
-                <input type="text" id="bookID_check" class="form-control" aria-describedby="" style="width: 160px;">
+                <input type="text" id="bookreg_bookIDsearch" class="form-control" aria-describedby="" style="width: 160px;">
               </div>
               <div class="col-auto">
                 <button type="button" class="btn btn-primary text-white" id="searchByBookId">Fetch Details</button>
-
               </div>
               <div class="col-auto">
-                <span id="msg_searchResBook" class="form-text">
+                <!-- <span id="msg_searchResBook" class="form-text">
                   1 Match Found
-                </span>
+                </span> -->
               </div>
             </div>
           </form>
@@ -340,7 +342,7 @@
         </ul>
       </li>
       <li><b>Black List IDs :</b>
-       <ul><li>710399883331</li></ul>
+       <ul><li>Still being developed</li></ul>
     </ol>
   </div>
 </div>
@@ -398,7 +400,6 @@
    </div>
  </div>
 </div>
-
 
 
 </body>
