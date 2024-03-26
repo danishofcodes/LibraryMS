@@ -45,6 +45,16 @@ const issueDetailsTbl_dateOfReturn = document.getElementById(
 );
 const issueDetailsTbl_late = document.getElementById("issueDetailsTbl_late");
 const bookIssuedTblData = document.getElementById("bookIssuedTblData");
+const searchBookDetails_mdl = document.getElementById("searchBookDetails_mdl");
+const book_name_mdl = document.getElementById("book_name_mdl");
+const divDataSec = document.querySelector(".div-data-sec");
+const fetched_bk_id = document.getElementById("fetched_bk_id");
+const fetched_bk_name = document.getElementById("fetched_bk_name");
+const fetched_bk_available = document.getElementById("fetched_bk_available");
+
+
+
+
 
 loginBtn.addEventListener("click", login);
 function login() {
@@ -248,7 +258,7 @@ function renderBookRegister(collections) {
         let buttonId = `issueButton-${bookItem.id}`;
         let row = `<tr class="datarow">
                 <td><button data-bkid="${bookItem.id
-            }" class="btn btn-success"  onclick="working(this)" id=${buttonId}>Issue</button></td>
+            }" class="btn btn-success"  onclick="bookRegisterIssueBookApprove(this)" id=${buttonId} data-bs-toggle="modal" data-bs-target="#bookRegister_mdl_issue" >Issue</button></td>
                 <td>${bookItem.bookName}</td>
                 <td>${bookItem.authorName}</td>
                 <td>${bookItem.publisherName}</td>
@@ -261,13 +271,6 @@ function renderBookRegister(collections) {
 
         bookregisterTblData.innerHTML += row;
     });
-}
-
-function working(e) {
-    debugger;
-    let _bkId = e.dataset.bkid;
-    let _final = bookregister.filter((f) => f.id == _bkId);
-    console.log(_final);
 }
 
 // function issueSelected(bookItem) {
@@ -409,12 +412,6 @@ function removeCustomer(patronID, patronList) {
     }
 }
 
-const searchBookDetails_mdl = document.getElementById("searchBookDetails_mdl");
-const book_name_mdl = document.getElementById("book_name_mdl");
-const divDataSec = document.querySelector(".div-data-sec");
-const fetched_bk_id = document.getElementById("fetched_bk_id");
-const fetched_bk_name = document.getElementById("fetched_bk_name");
-const fetched_bk_available = document.getElementById("fetched_bk_available");
 
 searchBookDetails_mdl.addEventListener("click", () => {
     bookName = book_name_mdl.value;
@@ -438,6 +435,7 @@ function fetchBookDetailInModal(collections, bookName) {
         console.log("Not found");
     } else {
         console.log("found at index : " + matchIndex + " Book Name :" + bookName);
+        // fetchissueDetails(patronID, patronList, matchIndex);
         divDataSec.style.display = "block";
         console.log(collections[matchIndex].id);
 
@@ -446,3 +444,27 @@ function fetchBookDetailInModal(collections, bookName) {
         fetched_bk_available.textContent = (collections[matchIndex].totalNoOfCopies - collections[matchIndex].lost) - collections[matchIndex].issued;
     }
 }
+
+
+const bookRegister_issue_bookname = document.getElementById("bookRegister_issue_bookname");
+const bookRegister_issue_authorname = document.getElementById("bookRegister_issue_authorname");
+const bookRegister_issue_publisher = document.getElementById("bookRegister_issue_publisher");
+const bookRegister_issue_avlcopies = document.getElementById("bookRegister_issue_avlcopies");
+const bookRegister_issue_issued = document.getElementById("bookRegister_issue_issued");
+const bookRegister_issue_patronID = document.getElementById("bookRegister_issue_patronID");
+
+
+function bookRegisterIssueBookApprove(e) {
+    let _bkId = e.dataset.bkid;
+    let _final = bookregister.filter((f) => f.id == _bkId);
+    console.log(_final);
+
+    _final.forEach((book)=>{
+       bookRegister_issue_bookname.value = book.bookName;
+       bookRegister_issue_authorname.value = book.authorName;
+       bookRegister_issue_publisher.value = book.publisherName;
+       bookRegister_issue_avlcopies.value= (book.totalNoOfCopies - book.lost) - book.issued;
+       bookRegister_issue_patronID.focus();
+    });
+}
+
